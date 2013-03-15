@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import requests
 import sys, os
@@ -24,13 +24,13 @@ for name, area_id in areas.items():
     area_img_fname = name+"-"+area_id+'_img.tgz'
     r = requests.get(aws_url(area_id))
     if r.ok:
-        file(os.path.join(DATADIR, area_data_fname), 'w').write(r.content)
-        print "got file", area_data_fname
+        open(os.path.join(DATADIR, area_data_fname), 'wb').write(r.content)
+        print("got file", area_data_fname)
     else:
-        print >>sys.stderr, "error getting file", area_data_fname
+        print("error getting file", area_data_fname, file=sys.stderr)
     r = requests.get(aws_img_url(area_id))
     if r.ok:
-        file(os.path.join(DATADIR, area_img_fname), 'w').write(r.content)
-        print "got file", area_img_fname
+        open(os.path.join(DATADIR, area_img_fname), 'wb').write(r.content)
+        print("got file", area_img_fname)
     else:
-        print >>sys.stderr, "error getting file", area_img_fname
+        print("error getting file", area_img_fname, file=sys.stderr)
