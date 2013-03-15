@@ -1,2 +1,7 @@
 data/
 images/
+bin/
+build/
+include/
+local/
+lib/
