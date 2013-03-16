@@ -11,8 +11,6 @@ class MountainProjectSpider(BaseSpider):
     start_urls = [ "http://mountainproject.com/u/christine-spang/107323239?action=ticks&&export=1" ]
 
     def parse(self, response):
-        # filename = response.url.split("/")[-2]
-        # open(filename, 'wb').write(response.body)
         hxs = HtmlXPathSelector(response)
         text = hxs.select('//pre/text()').extract()[0].strip().splitlines()[2:]
         items = []
